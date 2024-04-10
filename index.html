@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Noticia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.tiny.cloud/1/8xrnyhh8ngm1n9qkk2ln196xy9qxocubm1cxkkpjn72zbq0z/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+    <div class="container mt-5" id="container">
+        <div class="row justify-content-center">
+            <form enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="idEmpresa" class="form-label">Id Empresa</label>
+                        <select name="idEmpresa" id="idEmpresa" class="form-select" required>
+                            <option value="x" selected disabled>Seleccione la empresa a la que pertenece la noticia</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tituloNoticia" class="form-label">Titulo Noticia</label>
+                        <input type="text" class="form-control" id="tituloNoticia" placeholder="Titulo de la Noticia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resumenNoticia" class="form-label">Resumen Noticia</label>
+                        <input type="text" class="form-control" id="resumenNoticia" placeholder="Resumen de la Noticia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" placeholder="Imagen de la Noticia">
+                    </div>
+                    <div class="mb-3">
+                        <label for="publicada" class="form-label">Publicada</label>
+                        <input type="checkbox" id="publicada">
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="contenidoHTML"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaPublicacion" class="form-label">Fecha de publicacion</label>
+                        <input type="date" class="form-control" id="fechaPublicacion" placeholder="Fecha de publicación" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Crear noticia</button>
+                </div>
+            </form>
+            <div id="contenedor-noticia">
+                <h5 class="text-center">Noticia (endpoint buscar/{id})</h5>
+            </div>
+            <div id="contenedor-noticias">
+                <h5 class="text-center">Noticias (endpoint /noticias)</h5>
+            </div>
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="https://cdn.tiny.cloud/1/8xrnyhh8ngm1n9qkk2ln196xy9qxocubm1cxkkpjn72zbq0z/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+    tinymce.init({
+        selector: '#contenidoHTML',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+    </script>
+
+</body>
+</html>
